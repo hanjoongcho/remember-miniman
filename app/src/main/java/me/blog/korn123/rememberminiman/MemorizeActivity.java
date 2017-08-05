@@ -20,6 +20,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.blog.korn123.commons.constants.Constants;
 import me.blog.korn123.commons.utils.CommonUtils;
 import me.blog.korn123.commons.utils.FontUtils;
 
@@ -29,18 +30,18 @@ import me.blog.korn123.commons.utils.FontUtils;
 
 public class MemorizeActivity extends AppCompatActivity {
 
-    final int TOTAL_CARD_COUNT = 20;
-    int mMaximumCard = 3;
-    boolean mInitScreen = false;
-    List<String> cardIdList;
+    private List<String> mCardIds;
+    private int mMaximumCard = 3;
+    private boolean mInitScreen = false;
 
     @BindView(R.id.mainScreen) LinearLayout mMainScreen;
     @BindView(R.id.infoScreen) LinearLayout mInfoScreen;
-    @BindView(R.id.startMessage) TextView mStartMessage;
-    @BindView(R.id.confirm) TextView mConfirm;
-    @BindView(R.id.infoMessage) TextView mInfoMessage;
-    @BindView(R.id.container) LinearLayout mContainer;
+    @BindView(R.id.pathViewContainer) LinearLayout mPathViewContainer;
+
     @BindView(R.id.title) TextView mTitle;
+    @BindView(R.id.guideMessage) TextView mGuideMessage;
+    @BindView(R.id.confirm) TextView mConfirm;
+    @BindView(R.id.minimanSequence) TextView mMinimanSequence;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,43 +49,44 @@ public class MemorizeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_memorize);
         ButterKnife.bind(this);
 
-        // step1 카드초기화
-        cardIdList = new ArrayList<>();
-        for (int i = 0; i < TOTAL_CARD_COUNT; i++) {
-            cardIdList.add("miniman_" + (i + 1));
+        // step1 init cards
+        mCardIds = new ArrayList<>();
+        for (int i = 0; i < Constants.TOTAL_CARD_COUNT; i++) {
+            mCardIds.add("miniman_" + (i + 1));
         }
 
-        // step1 카드섞기
+        // step2 mix cards
         for (int i = 0; i < 100; i++) {
-            int index = (int) (Math.random() * TOTAL_CARD_COUNT);
-            String temp = cardIdList.get(0);
-            cardIdList.set(0, cardIdList.get(index));
-            cardIdList.set(index, temp);
+            int index = (int) (Math.random() * Constants.TOTAL_CARD_COUNT);
+            String temp = mCardIds.get(0);
+            mCardIds.set(0, mCardIds.get(index));
+            mCardIds.set(index, temp);
         }
 
-        // step3 스테이지 설정
+        // step3 setting stage info
         mMaximumCard = getIntent().getIntExtra("maximumCard", 3);
         String title = null;
         String message = null;
         switch (mMaximumCard) {
             case 3:
                 title = "STAGE 1";
-                message = "연속되는 3개의 캐릭터를 기억하세요.";
+                message = getString(R.string.stage_1_guide_message);
                 break;
             case 5:
                 title = "STAGE 2";
-                message = "연속되는 5개의 캐릭터를 기억하세요.";
+                message = getString(R.string.stage_2_guide_message);
                 break;
             case 8:
                 title = "STAGE 3";
-                message = "연속되는 8개의 캐릭터를 기억하세요.";
+                message = getString(R.string.stage_3_guide_message);
                 break;
         }
+
         mTitle.setText(title);
-        mStartMessage.setText(message);
+        mGuideMessage.setText(message);
         FontUtils.setTypeface(this, getAssets(), mTitle);
-        FontUtils.setTypeface(this, getAssets(), mInfoMessage);
-        FontUtils.setTypeface(this, getAssets(), mStartMessage);
+        FontUtils.setTypeface(this, getAssets(), mMinimanSequence);
+        FontUtils.setTypeface(this, getAssets(), mGuideMessage);
         FontUtils.setTypeface(this, getAssets(), mConfirm);
 
         mConfirm.setOnClickListener(new View.OnClickListener() {
@@ -98,8 +100,7 @@ public class MemorizeActivity extends AppCompatActivity {
     }
 
 
-    public int getResourceId(String pVariableName, String pResourcename)
-    {
+    public int getResourceId(String pVariableName, String pResourcename) {
         try {
             return getResources().getIdentifier(pVariableName, pResourcename, getPackageName());
         } catch (Exception e) {
@@ -109,7 +110,6 @@ public class MemorizeActivity extends AppCompatActivity {
     }
 
     class IconRenderThread extends Thread {
-
 
         Context context;
         int iconIndex = -1;
@@ -139,7 +139,7 @@ public class MemorizeActivity extends AppCompatActivity {
             pathView.setPathWidth(CommonUtils.dpToPixel(context, 1));
 //            pathView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             pathView.setLayoutParams(new ViewGroup.LayoutParams(CommonUtils.dpToPixel(context, 145), CommonUtils.dpToPixel(context, 150)));
-            pathView.setSvgResource(getResourceId(cardIdList.get(iconIndex), "raw"));
+            pathView.setSvgResource(getResourceId(mCardIds.get(iconIndex), "raw"));
 //            pathView.useNaturalColors();
             pathView.setFillAfter(true);
             final PathView.AnimatorBuilder animatorBuilder;
@@ -157,11 +157,11 @@ public class MemorizeActivity extends AppCompatActivity {
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
-                        if (mContainer.getChildCount() > 0) {
-                            mContainer.removeViewAt(0);
+                        if (mPathViewContainer.getChildCount() > 0) {
+                            mPathViewContainer.removeViewAt(0);
                         }
-                        mInfoMessage.setText(String.valueOf(iconIndex + 1));
-                        mContainer.addView(pathView);
+                        mMinimanSequence.setText(String.valueOf(iconIndex + 1));
+                        mPathViewContainer.addView(pathView);
                         animatorBuilder.start();
                     }
                 });
@@ -169,28 +169,28 @@ public class MemorizeActivity extends AppCompatActivity {
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
-//                        Intent intent = new Intent(MemorizeActivity.this, ItemGridActivity.class);
-//                        intent.putExtra("maximumCard", mMaximumCard);
-//                        intent.putExtra("1st", cardIdList.get(0));
-//                        intent.putExtra("2st", cardIdList.get(1));
-//                        intent.putExtra("3st", cardIdList.get(2));
-//
-//                        if (mMaximumCard >= 5) {
-//                            intent.putExtra("4st", cardIdList.get(3));
-//                            intent.putExtra("5st", cardIdList.get(4));
-//                            intent.putExtra("elapse1", getIntent().getStringExtra("elapse1"));
-//                        }
-//
-//                        if (mMaximumCard >= 8) {
-//                            intent.putExtra("6st", cardIdList.get(5));
-//                            intent.putExtra("7st", cardIdList.get(6));
-//                            intent.putExtra("8st", cardIdList.get(7));
-//                            intent.putExtra("elapse1", getIntent().getStringExtra("elapse1"));
-//                            intent.putExtra("elapse2", getIntent().getStringExtra("elapse2"));
-//                        }
-//
-//                        startActivity(intent);
-//                        finish();
+                        Intent intent = new Intent(MemorizeActivity.this, RememberActivity.class);
+                        intent.putExtra("maximumCard", mMaximumCard);
+                        intent.putExtra("1st", mCardIds.get(0));
+                        intent.putExtra("2st", mCardIds.get(1));
+                        intent.putExtra("3st", mCardIds.get(2));
+
+                        if (mMaximumCard >= 5) {
+                            intent.putExtra("4st", mCardIds.get(3));
+                            intent.putExtra("5st", mCardIds.get(4));
+                            intent.putExtra("elapse1", getIntent().getStringExtra("elapse1"));
+                        }
+
+                        if (mMaximumCard >= 8) {
+                            intent.putExtra("6st", mCardIds.get(5));
+                            intent.putExtra("7st", mCardIds.get(6));
+                            intent.putExtra("8st", mCardIds.get(7));
+                            intent.putExtra("elapse1", getIntent().getStringExtra("elapse1"));
+                            intent.putExtra("elapse2", getIntent().getStringExtra("elapse2"));
+                        }
+
+                        startActivity(intent);
+                        finish();
                     }
                 });
 

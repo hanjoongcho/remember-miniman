@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@drawable/bg_character_card"
+    android:layout_height="60dp">
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </LinearLayout>
+
+    <TextView
+        android:includeFontPadding="false"
+        android:background="#99ffffff"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="40dp"
+        android:textColor="#ff0000"
+        android:visibility="gone"
+        android:id="@+id/verifyResult"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</FrameLayout>

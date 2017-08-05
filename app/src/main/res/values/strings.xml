@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Remember Miniman</string>
     <string name="action_settings">Settings</string>
+
+    <!--MemorizeActivity-->
+    <string name="stage_1_guide_message">연속되는 3명의 Miniman을 기억하세요.</string>
+    <string name="stage_2_guide_message">연속되는 5명의 Miniman을 기억하세요.</string>
+    <string name="stage_3_guide_message">연속되는 8명의 Miniman을 기억하세요.</string>
 </resources>

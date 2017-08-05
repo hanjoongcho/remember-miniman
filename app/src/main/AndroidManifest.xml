@@ -21,6 +21,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".RememberActivity" android:label="" android:screenOrientation="portrait" android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

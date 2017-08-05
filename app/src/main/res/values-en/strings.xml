@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Remember Miniman</string>
+    <string name="action_settings">Settings</string>
+
+    <!--MemorizeActivity-->
+    <string name="stage_1_guide_message">Remember 3 Miniman in order.</string>
+    <string name="stage_2_guide_message">Remember 5 Miniman in order.</string>
+    <string name="stage_3_guide_message">Remember 8 Miniman in order.</string>
+</resources>

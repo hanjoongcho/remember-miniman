@@ -33,13 +33,13 @@
                 android:gravity="center"
                 android:textColor="@color/normalTextColor"
                 android:textSize="80dp"
-                android:id="@+id/infoMessage"
+                android:id="@+id/minimanSequence"
                 android:layout_width="match_parent"
                 android:layout_height="100dp" />
             <LinearLayout
                 android:gravity="center"
                 android:orientation="vertical"
-                android:id="@+id/container"
+                android:id="@+id/pathViewContainer"
                 android:layout_width="match_parent"
                 android:layout_height="150dp">
             </LinearLayout>
@@ -58,7 +58,7 @@
                 android:gravity="center"
                 android:textColor="@color/normalTextColor"
                 android:textSize="30dp"
-                android:id="@+id/startMessage"
+                android:id="@+id/guideMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView

@@ -5,6 +5,8 @@
     <color name="colorAccent">#f40818</color>
 
     <color name="gameBoardBackground">#FFFFFF</color>
+    <color name="resultCardBackground">#f1000000</color>
     <color name="emphasisTextColor">#FF0000</color>
     <color name="normalTextColor">#404040</color>
+
 </resources>

@@ -15,6 +15,10 @@ public class FontUtils {
 
     private volatile static Typeface mTypeface;
 
+    public static Typeface createTypeface(String fontName, AssetManager assetManager) {
+        return Typeface.createFromAsset(assetManager, "fonts/" + fontName);
+    }
+
     public static void setTypeface(Context context, AssetManager assetManager, TextView view) {
         view.setTypeface(getTypeface(context, assetManager));
     }
