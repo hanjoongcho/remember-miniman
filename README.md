@@ -81,8 +81,21 @@ Commercial Registry of Málaga, volume 4994, sheet 217, page number MA-113059, w
 93183366 and registered office at 13 Molina Lario Street, 5th floor, 29015 Málaga, Spain.
 ```
 
+### ttf fonts
+
+Copyright (c) 2010, NAVER Corporation (http://www.nhncorp.com)
+
+```
+Copyright (c) 2010, NAVER Corporation (http://www.nhncorp.com),
+with Reserved Font Name Nanum, Naver Nanum, NanumGothic, Naver NanumGothic, NanumMyeongjo, Naver NanumMyeongjo, NanumBrush, Naver NanumBrush, NanumPen, Naver NanumPen, Naver NanumGothicEco, NanumGothicEco, Naver NanumMyeongjoEco, NanumMyeongjoEco, Naver NanumGothicLight, NanumGothicLight, NanumBarunGothic, Naver NanumBarunGothic,
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at: http://scripts.sil.org/OFL
+SIL OPEN FONT LICENSE
+Version 1.1 - 26 February 2007
+```
+
 ### android-pathview
-Georgi Eftimov (https://github.com/geftimov/android-pathview)
+Copyright 2016 Georgi Eftimov (https://github.com/geftimov/android-pathview)
 ```
 Copyright 2016 Georgi Eftimov
 

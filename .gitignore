@@ -53,3 +53,10 @@ google-services.json
 freeline.py
 freeline/
 freeline_project_description.json
+
+# Do not distribute
+app/src/main/res/raw
+app/src/main/res/mipmap*
+
+
+
