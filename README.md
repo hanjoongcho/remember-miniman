@@ -11,15 +11,15 @@ Step1. Remember Miniman in order.
        stage2: 5 Miniman
        stage3: 8 Miniman
 ```
-<img src="screenshots/Screenshot_20170805-235853.png" width="288" height="512">&nbsp;
-<img src="screenshots/Screenshot_20170806-000436.png" width="288" height="512">&nbsp;
-<img src="screenshots/Screenshot_20170806-002457.png" width="288" height="512">
+<img src="screenshots/memorize_1.png" width="288" height="512">&nbsp;
+<img src="screenshots/memorize_2.png" width="288" height="512">&nbsp;
+<img src="screenshots/memorize_3.png" width="288" height="512">
 
 ```
 Step2. Choose Miniman in order.
 ```
-<img src="screenshots/Screenshot_20170806-000028.png" width="288" height="512">&nbsp;
-<img src="screenshots/Screenshot_20170806-000035.png" width="288" height="512">
+<img src="screenshots/play_1.png" width="288" height="512">&nbsp;
+<img src="screenshots/play_2.png" width="288" height="512">
 
 
 ```
@@ -27,8 +27,9 @@ Step3. Repeat to stage three.
        The final record is the sum of the elapsed times of all stages.
        I will use the firebase database to provide the ranking later.
 ```
-<img src="screenshots/Screenshot_20170806-004417.png" width="288" height="512">&nbsp;
-<img src="screenshots/Screenshot_20170806-004448.png" width="288" height="512">
+<img src="screenshots/play_3.png" width="288" height="512">&nbsp;
+<img src="screenshots/play_4.png" width="288" height="512">&nbsp;
+<img src="screenshots/play_5.png" width="288" height="512">&nbsp;
 
 # How to build
 ```

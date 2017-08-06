@@ -41,8 +41,8 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 android:id="@+id/pathViewContainer"
-                android:layout_width="145dp"
-                android:layout_height="150dp">
+                android:layout_width="200dp"
+                android:layout_height="200dp">
             </LinearLayout>
 
         </LinearLayout>
