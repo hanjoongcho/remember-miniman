@@ -1,4 +1,4 @@
-package me.blog.korn123.rememberminiman;
+package me.blog.korn123.rememberminiman.activity;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -22,6 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.blog.korn123.commons.constants.Constants;
 import me.blog.korn123.commons.utils.FontUtils;
+import me.blog.korn123.rememberminiman.R;
 import me.blog.korn123.rememberminiman.adapter.CharacterCardAdapter;
 import me.blog.korn123.rememberminiman.model.CharacterCard;
 
@@ -173,7 +175,6 @@ public class RememberActivity extends AppCompatActivity {
                 }
 
                 if (correctCount == mMaximumCard) {
-                    mTimer.interrupt();
                     final Intent intent = new Intent(RememberActivity.this, MemorizeActivity.class);
                     String elapseTime = String.valueOf(mSeconds.getText()) + String.valueOf(mMillis.getText());
                     switch (mMaximumCard) {
@@ -194,6 +195,7 @@ public class RememberActivity extends AppCompatActivity {
                             break;
                     }
 
+                    mTimer.interrupt();
                     float total = Float.valueOf(String.valueOf(mSeconds.getText()) + String.valueOf(mMillis.getText()));
                     if (getIntent().getStringExtra("elapse1") != null) total += Float.valueOf(getIntent().getStringExtra("elapse1"));
                     if (getIntent().getStringExtra("elapse2") != null) total += Float.valueOf(getIntent().getStringExtra("elapse2"));
@@ -218,6 +220,7 @@ public class RememberActivity extends AppCompatActivity {
                             }
                         }).start();
                     } else {
+                        mResultMessage.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 70);
                         mResultMessage.setText("try again");
                         mResultMessage.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -229,7 +232,6 @@ public class RememberActivity extends AppCompatActivity {
                         });
                     }
                 }
-
             }
         });
 

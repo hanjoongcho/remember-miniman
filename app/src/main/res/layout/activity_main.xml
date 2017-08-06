@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/gameBoardBackground"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <TextView
+        android:layout_marginBottom="60dp"
+        android:id="@+id/title"
+        android:text="@string/app_name"
+        android:gravity="center"
+        android:textColor="@color/normalTextColor"
+        android:textSize="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.eftimoff.androipathview.PathView
+        android:layout_marginBottom="40dp"
+        android:id="@+id/miniman"
+        app:pathWidth="1dp"
+        app:svg="@raw/miniman_19"
+        android:layout_width="145dp"
+        android:layout_height="150dp" />
+
+    <TextView
+        android:layout_marginBottom="20dp"
+        android:id="@+id/start"
+        android:text="START"
+        android:gravity="center"
+        android:textColor="@color/normalTextColor"
+        android:textSize="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/license"
+        android:text="LICENSE"
+        android:gravity="center"
+        android:textColor="@color/normalTextColor"
+        android:textSize="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
+

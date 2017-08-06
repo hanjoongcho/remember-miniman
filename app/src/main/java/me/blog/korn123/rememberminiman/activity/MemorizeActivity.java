@@ -1,4 +1,4 @@
-package me.blog.korn123.rememberminiman;
+package me.blog.korn123.rememberminiman.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +23,7 @@ import butterknife.ButterKnife;
 import me.blog.korn123.commons.constants.Constants;
 import me.blog.korn123.commons.utils.CommonUtils;
 import me.blog.korn123.commons.utils.FontUtils;
+import me.blog.korn123.rememberminiman.R;
 
 /**
  * Created by hanjoong on 2017-08-06.
@@ -135,12 +136,12 @@ public class MemorizeActivity extends AppCompatActivity {
 //            mPathView.clearAnimation();
 
             final PathView pathView = new PathView(context);
-            pathView.setPathColor(Color.parseColor("#000000"));
+//            pathView.setPathColor(Color.parseColor("#000000"));
             pathView.setPathWidth(CommonUtils.dpToPixel(context, 1));
 //            pathView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            pathView.setLayoutParams(new ViewGroup.LayoutParams(CommonUtils.dpToPixel(context, 145), CommonUtils.dpToPixel(context, 150)));
+//            pathView.setLayoutParams(new ViewGroup.LayoutParams(CommonUtils.dpToPixel(context, 145), CommonUtils.dpToPixel(context, 150)));
             pathView.setSvgResource(getResourceId(mCardIds.get(iconIndex), "raw"));
-//            pathView.useNaturalColors();
+            pathView.useNaturalColors();
             pathView.setFillAfter(true);
             final PathView.AnimatorBuilder animatorBuilder;
             animatorBuilder = pathView.getPathAnimator()

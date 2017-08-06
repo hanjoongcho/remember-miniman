@@ -43,10 +43,26 @@ Step5. Build 'remember-miniman' project with android studio.
 
 # License
 
+### remember-miniman
+Copyright 2017 Hanjoong Cho (https://github.com/hanjoongcho/remember-miniman)
+```
+Copyright 2017 Hanjoong Cho
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
+
 ### svg images
-
 Flaticon Basic License (https://www.flaticon.com/packs/miniman)
-
 ```
 LICENSE TERMS AND CONDITIONS
 FREE LICENSE (WITH ATTRIBUTION)
@@ -82,9 +98,7 @@ Commercial Registry of Málaga, volume 4994, sheet 217, page number MA-113059, w
 ```
 
 ### ttf fonts
-
 Copyright (c) 2010, NAVER Corporation (http://www.nhncorp.com)
-
 ```
 Copyright (c) 2010, NAVER Corporation (http://www.nhncorp.com),
 with Reserved Font Name Nanum, Naver Nanum, NanumGothic, Naver NanumGothic, NanumMyeongjo, Naver NanumMyeongjo, NanumBrush, Naver NanumBrush, NanumPen, Naver NanumPen, Naver NanumGothicEco, NanumGothicEco, Naver NanumMyeongjoEco, NanumMyeongjoEco, Naver NanumGothicLight, NanumGothicLight, NanumBarunGothic, Naver NanumBarunGothic,
@@ -110,6 +124,30 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+```
+
+### butterknife
+Copyright 2013 Jake Wharton (https://github.com/JakeWharton/butterknife)
+```
+Copyright 2013 Jake Wharton
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
+
+### commons-lang
+Apache License Version 2.0, January 2004(https://github.com/apache/commons-lang)
+```
+Code is under the Apache Licence v2.
 ```
 
 [1]: https://www.flaticon.com/packs/miniman

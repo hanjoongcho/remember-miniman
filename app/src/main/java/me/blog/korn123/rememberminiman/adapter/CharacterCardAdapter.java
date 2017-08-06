@@ -71,7 +71,7 @@ public class CharacterCardAdapter extends ArrayAdapter<CharacterCard> {
         holder.container.addView(pathView);
 //        pathView.useNaturalColors();
         pathView.setFillAfter(true);
-        pathView.setLayoutParams(new LinearLayout.LayoutParams(CommonUtils.dpToPixel(context, 35), CommonUtils.dpToPixel(context, 40)));
+//        pathView.setLayoutParams(new LinearLayout.LayoutParams(CommonUtils.dpToPixel(context, 35), CommonUtils.dpToPixel(context, 40)));
 //        pathView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         pathView.setSvgResource(characterCard.getCardResourceId());
 //        holder.textView.setText(characterCard.getInfo());
