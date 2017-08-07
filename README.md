@@ -36,9 +36,10 @@ Step3. Repeat to stage three.
 Step1. Fork or download 'remember-miniman' project.
 Step2. Import 'remember-miniman' project into android studio.
 Step3. Use below link download svg images from Flaticon.
-Step4. Choose 20 pictures of your liking and change the file name as below.
+Step4. Choose 20 svg file of your liking and change the file name as below.
        ex> miniman_1.svg, miniman_2.svg, ..., miniman_19.svg, miniman_20.svg
-Step5. Build 'remember-miniman' project with android studio.
+Step5. Copy the 20 renamed files to the '/app/src/main/res/raw' directory.
+Step6. Build 'remember-miniman' project with android studio.
 ```
 [Download miniman svg images from Flaticon][1]
 
