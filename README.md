@@ -11,7 +11,7 @@ Step1. Remember Miniman in order.
        stage2: 5 Miniman
        stage3: 8 Miniman
 ```
-<img src="screenshots/memorize_1.png" width="288" height="512">&nbsp;
+<img src="screenshots/memorize_1.gif" width="288" height="512">&nbsp;
 <img src="screenshots/memorize_2.png" width="288" height="512">&nbsp;
 <img src="screenshots/memorize_3.png" width="288" height="512">
 

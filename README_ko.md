@@ -11,7 +11,7 @@ Step1. Miniman을 순서대로 기억한다.
        stage2: 5명의 Miniman을 기억해야함
        stage3: 8명의 Miniman을 기억해야함
 ```
-<img src="screenshots/memorize_1.png" width="288" height="512">&nbsp;
+<img src="screenshots/memorize_1.gif" width="288" height="512">&nbsp;
 <img src="screenshots/memorize_2.png" width="288" height="512">&nbsp;
 <img src="screenshots/memorize_3.png" width="288" height="512">
 
