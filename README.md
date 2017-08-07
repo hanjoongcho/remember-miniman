@@ -2,7 +2,7 @@
 [![License][licensesvg]][license] <br />
 This is a simple board game using memory. <br />
 <a href='https://play.google.com/store/apps/details?id=me.blog.korn123.rememberminiman'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="323" height="125"/></a><br />
-[README of Korean][README.md]
+[README of Korean][README_ko.md]
 
 # How to play
 ```
@@ -155,3 +155,4 @@ Code is under the Apache Licence v2.
 [1]: https://www.flaticon.com/packs/miniman
 [licensesvg]: https://img.shields.io/badge/License-Apache--2.0-brightgreen.svg
 [license]: https://github.com/hanjoongcho/remember-miniman/blob/master/LICENSE.md
+[README_ko.md]: https://github.com/hanjoongcho/remember-miniman/blob/master/README_ko.md
