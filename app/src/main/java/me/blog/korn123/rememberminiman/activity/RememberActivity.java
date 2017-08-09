@@ -40,6 +40,7 @@ import me.blog.korn123.rememberminiman.model.RankingCard;
 
 public class RememberActivity extends AppCompatActivity {
 
+    private StopWatch mStopWatch;
     private DatabaseReference mDatabase;
     private int correctCount = 0;
     private int mMaximumCard = 3;
@@ -184,6 +185,7 @@ public class RememberActivity extends AppCompatActivity {
                 }
 
                 if (correctCount == mMaximumCard) {
+                    mStopWatch.stop();
                     final Intent intent = new Intent(RememberActivity.this, MemorizeActivity.class);
                     String elapseTime = String.valueOf(mSeconds.getText()) + String.valueOf(mMillis.getText());
                     switch (mMaximumCard) {
@@ -192,15 +194,18 @@ public class RememberActivity extends AppCompatActivity {
                             // setting next stage max card count
                             mMaximumCard = 5;
                             intent.putExtra("elapse1", elapseTime);
+                            registerElapsedTime(FirebaseAuth.getInstance().getCurrentUser().getUid(), "/ranking/stage1/", Float.valueOf(elapseTime));
                             break;
                         case 5:
                             mBody3.setText(elapseTime);
                             mMaximumCard = 8;
                             intent.putExtra("elapse1", getIntent().getStringExtra("elapse1"));
                             intent.putExtra("elapse2", elapseTime);
+                            registerElapsedTime(FirebaseAuth.getInstance().getCurrentUser().getUid(), "/ranking/stage2/", Float.valueOf(elapseTime));
                             break;
                         case 8:
                             mBody4.setText(elapseTime);
+                            registerElapsedTime(FirebaseAuth.getInstance().getCurrentUser().getUid(), "/ranking/stage3/", Float.valueOf(elapseTime));
                             break;
                     }
 
@@ -215,7 +220,7 @@ public class RememberActivity extends AppCompatActivity {
                     intent.putExtra("maximumCard", mMaximumCard);
                     mResultMessage.setVisibility(View.VISIBLE);
 
-                    if (correctCount < 3) {
+                    if (correctCount < 8) {
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
@@ -229,18 +234,6 @@ public class RememberActivity extends AppCompatActivity {
                             }
                         }).start();
                     } else {
-
-                        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                        if (userId != null) {
-                            // ranking 등록이 가능한경우 등록
-                            String key = mDatabase.child("ranking").child("stage1").push().getKey();
-                            RankingCard rankingCard = new RankingCard(-1, "", total);
-                            Map<String, Object> postValues = rankingCard.toMap();
-
-                            Map<String, Object> childUpdates = new HashMap<>();
-                            childUpdates.put("/ranking/stage1/" + key, postValues);
-                            mDatabase.updateChildren(childUpdates);
-                        }
 
                         mResultMessage.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 70);
                         mResultMessage.setText("try again");
@@ -272,10 +265,10 @@ public class RememberActivity extends AppCompatActivity {
 
         mSeconds.setTypeface(typeface);
         mMillis.setTypeface(typeface);
-
+        mStopWatch = new StopWatch();
         mTimer = new Thread(new Runnable() {
             int currentSeconds = 0;
-            StopWatch stopWatch = new StopWatch();
+
             DecimalFormat secondsFormat = new DecimalFormat("#0");
             DecimalFormat millisFormat = new DecimalFormat("#.00");
             @Override
@@ -285,13 +278,13 @@ public class RememberActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                stopWatch.start();
+                mStopWatch.start();
                 while(correctCount < mMaximumCard) {
                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                         @Override
                         public void run() {
-                            mSeconds.setText(secondsFormat.format(stopWatch.getTime()/1000f));
-                            float temp = Float.valueOf(millisFormat.format(stopWatch.getTime()/1000f));
+                            mSeconds.setText(secondsFormat.format(mStopWatch.getTime()/1000f));
+                            float temp = Float.valueOf(millisFormat.format(mStopWatch.getTime()/1000f));
                             float temp2 = temp % 1;
                             mMillis.setText(millisFormat.format(temp2));
 //                            Log.i("elap", elapseTime);
@@ -308,6 +301,18 @@ public class RememberActivity extends AppCompatActivity {
             }
         });
         mTimer.start();
+    }
+
+    private void registerElapsedTime(String userId, String nodeName, float elapsedTime) {
+        // ranking 등록이 가능한경우 등록
+        if (userId != null) {
+            String key = mDatabase.child("ranking").child("stage1").push().getKey();
+            RankingCard rankingCard = new RankingCard(-1, userId, elapsedTime);
+            Map<String, Object> postValues = rankingCard.toMap();
+            Map<String, Object> childUpdates = new HashMap<>();
+            childUpdates.put(nodeName + key, postValues);
+            mDatabase.updateChildren(childUpdates);
+        }
     }
 
     private void resetIncorrectCards() {

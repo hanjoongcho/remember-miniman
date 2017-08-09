@@ -14,7 +14,6 @@ public class RankingS3Fragment extends RankingListFragment {
     @Override
     public Query getQuery(DatabaseReference databaseReference) {
         // only stage1 ranking
-        return databaseReference.child("user-posts")
-                .child(getUid());
+        return databaseReference.child("ranking").child("stage3");
     }
 }

@@ -10,8 +10,8 @@
         android:id="@+id/tabs"
         android:background="@color/colorAccent"
         app:tabTextColor="@color/rankingTabTextColor"
-        app:tabSelectedTextColor="@color/rankingTabTextColor"
-        app:tabIndicatorColor="@color/colorPrimaryDark"
+        app:tabSelectedTextColor="@color/rankingTabSelectedTextColor"
+        app:tabIndicatorColor="@color/rankingTabSelectedTextColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
