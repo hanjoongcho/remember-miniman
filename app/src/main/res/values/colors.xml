@@ -9,4 +9,6 @@
     <color name="emphasisTextColor">#FF0000</color>
     <color name="normalTextColor">#404040</color>
 
+    <color name="rankingTabTextColor">#FFFFFF</color>
+
 </resources>

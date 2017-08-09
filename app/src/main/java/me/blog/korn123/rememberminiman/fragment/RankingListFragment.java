@@ -85,7 +85,7 @@ public abstract class RankingListFragment extends Fragment {
 //                }
 
                 // Bind Post to ViewHolder, setting OnClickListener for the star button
-                viewHolder.bindToCard(model);
+                viewHolder.bindToCard(model, position, getContext(), getActivity().getAssets());
             }
         };
         mRecycler.setAdapter(mAdapter);

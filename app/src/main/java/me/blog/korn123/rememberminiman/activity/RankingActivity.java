@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import me.blog.korn123.rememberminiman.R;
 import me.blog.korn123.rememberminiman.fragment.RankingS1Fragment;
 import me.blog.korn123.rememberminiman.fragment.RankingS2Fragment;
@@ -26,6 +28,7 @@ public class RankingActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
+        ButterKnife.bind(this);
 
         // Create the adapter that will return a fragment for each section
         mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
@@ -33,11 +36,13 @@ public class RankingActivity extends BaseActivity {
                     new RankingS1Fragment(),
                     new RankingS2Fragment(),
                     new RankingS3Fragment(),
+                    new RankingS3Fragment(),
             };
             private final String[] mFragmentNames = new String[] {
                     "Stage1",
-                    "Stage2",
-                    "Stage3"
+                    "Stage2" ,
+                    "Stage3",
+                    "Total"
             };
             @Override
             public Fragment getItem(int position) {
@@ -57,8 +62,15 @@ public class RankingActivity extends BaseActivity {
         mViewPager.setAdapter(mPagerAdapter);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+    }
 
-
+    @OnClick({R.id.back})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.back:
+                finish();
+                break;
+        }
     }
 
 }
