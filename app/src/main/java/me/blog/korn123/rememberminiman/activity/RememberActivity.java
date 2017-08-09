@@ -12,12 +12,18 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.StopWatch;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,6 +32,7 @@ import me.blog.korn123.commons.utils.FontUtils;
 import me.blog.korn123.rememberminiman.R;
 import me.blog.korn123.rememberminiman.adapter.CharacterCardAdapter;
 import me.blog.korn123.rememberminiman.model.CharacterCard;
+import me.blog.korn123.rememberminiman.model.RankingCard;
 
 /**
  * Created by hanjoong on 2017-08-06.
@@ -33,6 +40,7 @@ import me.blog.korn123.rememberminiman.model.CharacterCard;
 
 public class RememberActivity extends AppCompatActivity {
 
+    private DatabaseReference mDatabase;
     private int correctCount = 0;
     private int mMaximumCard = 3;
     private Thread mTimer;
@@ -58,6 +66,7 @@ public class RememberActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remember);
         ButterKnife.bind(this);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         // step1 init cards
         List<CharacterCard> characterCards = new ArrayList<>();
@@ -206,7 +215,7 @@ public class RememberActivity extends AppCompatActivity {
                     intent.putExtra("maximumCard", mMaximumCard);
                     mResultMessage.setVisibility(View.VISIBLE);
 
-                    if (correctCount < 8) {
+                    if (correctCount < 3) {
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
@@ -220,6 +229,19 @@ public class RememberActivity extends AppCompatActivity {
                             }
                         }).start();
                     } else {
+
+                        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                        if (userId != null) {
+                            // ranking 등록이 가능한경우 등록
+                            String key = mDatabase.child("ranking").child("stage1").push().getKey();
+                            RankingCard rankingCard = new RankingCard(-1, "", total);
+                            Map<String, Object> postValues = rankingCard.toMap();
+
+                            Map<String, Object> childUpdates = new HashMap<>();
+                            childUpdates.put("/ranking/stage1/" + key, postValues);
+                            mDatabase.updateChildren(childUpdates);
+                        }
+
                         mResultMessage.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 70);
                         mResultMessage.setText("try again");
                         mResultMessage.setOnClickListener(new View.OnClickListener() {

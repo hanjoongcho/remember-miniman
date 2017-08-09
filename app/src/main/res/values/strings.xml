@@ -6,4 +6,10 @@
     <string name="stage_1_guide_message">연속되는 3명의 Miniman을 기억하세요.</string>
     <string name="stage_2_guide_message">연속되는 5명의 Miniman을 기억하세요.</string>
     <string name="stage_3_guide_message">연속되는 8명의 Miniman을 기억하세요.</string>
+
+    <!--SignInActivity-->
+    <string name="sign_up">Sign Up</string>
+    <string name="hint_password">password</string>
+    <string name="hint_email">email</string>
+    <string name="sign_in">Sign In</string>
 </resources>

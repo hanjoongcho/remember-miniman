@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.title) TextView mTitle;
     @BindView(R.id.start) TextView mStart;
     @BindView(R.id.license) TextView mLicense;
+    @BindView(R.id.ranking) TextView mRanking;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         FontUtils.setTypeface(this, getAssets(), mTitle);
         FontUtils.setTypeface(this, getAssets(), mStart);
         FontUtils.setTypeface(this, getAssets(), mLicense);
+        FontUtils.setTypeface(this, getAssets(), mRanking);
 
         mMiniman.useNaturalColors();
         mMiniman.setFillAfter(true);
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 .interpolator(new AccelerateDecelerateInterpolator()).start();
     }
 
-    @OnClick({R.id.start, R.id.license})
+    @OnClick({R.id.start, R.id.license, R.id.ranking})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.start:
@@ -56,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.license:
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/hanjoongcho/remember-miniman/blob/master/LICENSE.md"));
                 startActivity(browserIntent);
+                break;
+            case R.id.ranking:
+                Intent signInActivityIntent = new Intent(this, SignInActivity.class);
+                startActivity(signInActivityIntent);
                 break;
         }
     }

@@ -23,7 +23,11 @@
 
         <activity android:name=".activity.MemorizeActivity" android:label="" android:screenOrientation="portrait" android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.RememberActivity" android:label="" android:screenOrientation="portrait" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.SignInActivity" android:label="" android:screenOrientation="portrait" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.RankingActivity" android:label="" android:screenOrientation="portrait" android:theme="@style/AppTheme.NoActionBar" />
 
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
