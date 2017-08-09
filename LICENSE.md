@@ -54,6 +54,12 @@ Commercial Registry of Málaga, volume 4994, sheet 217, page number MA-113059, w
 93183366 and registered office at 13 Molina Lario Street, 5th floor, 29015 Málaga, Spain.
 ```
 
+### icon images
+Apache License Version 2.0 (https://github.com/google/material-design-icons)
+```
+We have made these icons available for you to incorporate them into your products under the Apache License Version 2.0. Feel free to remix and re-share these icons and documentation in your products. We'd love attribution in your app's about screen, but it's not required. The only thing we ask is that you not re-sell these icons.
+```
+
 ### ttf fonts
 Copyright (c) 2010, NAVER Corporation (http://www.nhncorp.com)
 ```
