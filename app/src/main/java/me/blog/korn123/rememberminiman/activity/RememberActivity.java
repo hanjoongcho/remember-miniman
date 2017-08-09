@@ -13,6 +13,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -185,7 +186,6 @@ public class RememberActivity extends AppCompatActivity {
                 }
 
                 if (correctCount == mMaximumCard) {
-                    mStopWatch.stop();
                     final Intent intent = new Intent(RememberActivity.this, MemorizeActivity.class);
                     String elapseTime = String.valueOf(mSeconds.getText()) + String.valueOf(mMillis.getText());
                     switch (mMaximumCard) {
@@ -194,18 +194,18 @@ public class RememberActivity extends AppCompatActivity {
                             // setting next stage max card count
                             mMaximumCard = 5;
                             intent.putExtra("elapse1", elapseTime);
-                            registerElapsedTime(FirebaseAuth.getInstance().getCurrentUser().getUid(), "/ranking/stage1/", Float.valueOf(elapseTime));
+                            registerElapsedTime(FirebaseAuth.getInstance().getCurrentUser(), "/ranking/stage1/", Float.valueOf(elapseTime));
                             break;
                         case 5:
                             mBody3.setText(elapseTime);
                             mMaximumCard = 8;
                             intent.putExtra("elapse1", getIntent().getStringExtra("elapse1"));
                             intent.putExtra("elapse2", elapseTime);
-                            registerElapsedTime(FirebaseAuth.getInstance().getCurrentUser().getUid(), "/ranking/stage2/", Float.valueOf(elapseTime));
+                            registerElapsedTime(FirebaseAuth.getInstance().getCurrentUser(), "/ranking/stage2/", Float.valueOf(elapseTime));
                             break;
                         case 8:
                             mBody4.setText(elapseTime);
-                            registerElapsedTime(FirebaseAuth.getInstance().getCurrentUser().getUid(), "/ranking/stage3/", Float.valueOf(elapseTime));
+                            registerElapsedTime(FirebaseAuth.getInstance().getCurrentUser(), "/ranking/stage3/", Float.valueOf(elapseTime));
                             break;
                     }
 
@@ -303,11 +303,11 @@ public class RememberActivity extends AppCompatActivity {
         mTimer.start();
     }
 
-    private void registerElapsedTime(String userId, String nodeName, float elapsedTime) {
-        // ranking 등록이 가능한경우 등록
-        if (userId != null) {
+    private void registerElapsedTime(FirebaseUser firebaseUser, String nodeName, float elapsedTime) {
+        // if registration is possible
+        if (firebaseUser != null) {
             String key = mDatabase.child("ranking").child("stage1").push().getKey();
-            RankingCard rankingCard = new RankingCard(-1, userId, elapsedTime);
+            RankingCard rankingCard = new RankingCard(-1, firebaseUser.getEmail(), elapsedTime);
             Map<String, Object> postValues = rankingCard.toMap();
             Map<String, Object> childUpdates = new HashMap<>();
             childUpdates.put(nodeName + key, postValues);
