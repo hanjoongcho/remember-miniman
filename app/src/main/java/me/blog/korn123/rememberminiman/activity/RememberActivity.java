@@ -29,6 +29,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.blog.korn123.commons.constants.Constants;
+import me.blog.korn123.commons.utils.CommonUtils;
 import me.blog.korn123.commons.utils.FontUtils;
 import me.blog.korn123.rememberminiman.R;
 import me.blog.korn123.rememberminiman.adapter.CharacterCardAdapter;
@@ -41,11 +42,13 @@ import me.blog.korn123.rememberminiman.model.RankingCard;
 
 public class RememberActivity extends AppCompatActivity {
 
+    private final int ELAPSE_TIME_UPDATE_INTERVAL = 60;
     private StopWatch mStopWatch;
     private DatabaseReference mDatabase;
     private int correctCount = 0;
     private int mMaximumCard = 3;
     private Thread mTimer;
+    private boolean mClearStage = false;
 
     @BindView(R.id.itemGrid) GridView mGridView;
     @BindView(R.id.resultMessage)  TextView mResultMessage;
@@ -73,7 +76,7 @@ public class RememberActivity extends AppCompatActivity {
         // step1 init cards
         List<CharacterCard> characterCards = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            CharacterCard characterCard = new CharacterCard(getResourceId("miniman_" + (i + 1), "raw"), "miniman_" + (i + 1));
+            CharacterCard characterCard = new CharacterCard(CommonUtils.getResourceId(getResources(), getPackageName(), "miniman_" + (i + 1), "raw"), "miniman_" + (i + 1));
             characterCards.add(characterCard);
         }
 
@@ -208,7 +211,8 @@ public class RememberActivity extends AppCompatActivity {
                             registerElapsedTime(FirebaseAuth.getInstance().getCurrentUser(), "/ranking/stage3/", Float.valueOf(elapseTime));
                             break;
                     }
-
+                    mClearStage = true;
+                    CommonUtils.threadSleep(ELAPSE_TIME_UPDATE_INTERVAL * 2);
                     mTimer.interrupt();
                     float total = Float.valueOf(String.valueOf(mSeconds.getText()) + String.valueOf(mMillis.getText()));
                     if (getIntent().getStringExtra("elapse1") != null) total += Float.valueOf(getIntent().getStringExtra("elapse1"));
@@ -224,11 +228,7 @@ public class RememberActivity extends AppCompatActivity {
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                try {
-                                    Thread.sleep(2000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
+                                CommonUtils.threadSleep(2000);
                                 startActivity(intent);
                                 finish();
                             }
@@ -267,40 +267,29 @@ public class RememberActivity extends AppCompatActivity {
         mMillis.setTypeface(typeface);
         mStopWatch = new StopWatch();
         mTimer = new Thread(new Runnable() {
-            int currentSeconds = 0;
-
-            DecimalFormat secondsFormat = new DecimalFormat("#0");
-            DecimalFormat millisFormat = new DecimalFormat("#.00");
             @Override
             public void run() {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                CommonUtils.threadSleep(2000);
                 mStopWatch.start();
-                while(correctCount < mMaximumCard) {
-                    new Handler(Looper.getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() {
-                            mSeconds.setText(secondsFormat.format(mStopWatch.getTime()/1000f));
-                            float temp = Float.valueOf(millisFormat.format(mStopWatch.getTime()/1000f));
-                            float temp2 = temp % 1;
-                            mMillis.setText(millisFormat.format(temp2));
-//                            Log.i("elap", elapseTime);
-                        }
-                    });
-
-                    try {
-                        Thread.sleep(60);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    currentSeconds++;
+                while(!mClearStage) {
+                    updateDisplayElapseTime();
+                    CommonUtils.threadSleep(ELAPSE_TIME_UPDATE_INTERVAL);
                 }
             }
         });
         mTimer.start();
+    }
+
+    private void updateDisplayElapseTime() {
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                mStopWatch.suspend();
+                mSeconds.setText(CommonUtils.getSecondsWithDecimalFormat(mStopWatch.getTime()));
+                mMillis.setText(CommonUtils.getMillisWithDecimalFormat(mStopWatch.getTime()));
+                mStopWatch.resume();
+            }
+        });
     }
 
     private void registerElapsedTime(FirebaseUser firebaseUser, String nodeName, float elapsedTime) {
@@ -326,12 +315,4 @@ public class RememberActivity extends AppCompatActivity {
 
     }
 
-    public int getResourceId(String pVariableName, String pResourcename) {
-        try {
-            return getResources().getIdentifier(pVariableName, pResourcename, getPackageName());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
-        }
-    }
 }

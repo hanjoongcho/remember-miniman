@@ -2,6 +2,7 @@ package me.blog.korn123.rememberminiman.viewholder;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -29,6 +30,10 @@ public class RankingViewHolder extends RecyclerView.ViewHolder{
     }
 
     public void bindToCard(RankingCard rankingCard, int position, Context context, AssetManager assetManager) {
+        Typeface typeface = FontUtils.createTypeface("OpenSans-Light.ttf", assetManager);
+        rankingNoView.setTypeface(typeface);
+        userNameView.setTypeface(typeface);
+        recordTimeView.setTypeface(typeface);
 //        FontUtils.setTypeface(context, assetManager, rankingNoView);
 //        FontUtils.setTypeface(context, assetManager, userNameView);
 //        FontUtils.setTypeface(context, assetManager, recordTimeView);
