@@ -212,7 +212,6 @@ public class RememberActivity extends AppCompatActivity {
                             break;
                     }
                     mClearStage = true;
-                    CommonUtils.threadSleep(ELAPSE_TIME_UPDATE_INTERVAL * 2);
                     mTimer.interrupt();
                     float total = Float.valueOf(String.valueOf(mSeconds.getText()) + String.valueOf(mMillis.getText()));
                     if (getIntent().getStringExtra("elapse1") != null) total += Float.valueOf(getIntent().getStringExtra("elapse1"));
@@ -228,7 +227,7 @@ public class RememberActivity extends AppCompatActivity {
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                CommonUtils.threadSleep(2000);
+                                CommonUtils.threadSleepWithoutException(2000);
                                 startActivity(intent);
                                 finish();
                             }
@@ -269,11 +268,16 @@ public class RememberActivity extends AppCompatActivity {
         mTimer = new Thread(new Runnable() {
             @Override
             public void run() {
-                CommonUtils.threadSleep(2000);
+                CommonUtils.threadSleepWithoutException(2000);
                 mStopWatch.start();
-                while(!mClearStage) {
-                    updateDisplayElapseTime();
-                    CommonUtils.threadSleep(ELAPSE_TIME_UPDATE_INTERVAL);
+                while(!mTimer.isInterrupted()) {
+                    try {
+                        Thread.sleep(ELAPSE_TIME_UPDATE_INTERVAL);
+                        updateDisplayElapseTime();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                        break;
+                    }
                 }
             }
         });
@@ -284,10 +288,9 @@ public class RememberActivity extends AppCompatActivity {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                mStopWatch.suspend();
-                mSeconds.setText(CommonUtils.getSecondsWithDecimalFormat(mStopWatch.getTime()));
-                mMillis.setText(CommonUtils.getMillisWithDecimalFormat(mStopWatch.getTime()));
-                mStopWatch.resume();
+                long tempMillis = mStopWatch.getTime();
+                mSeconds.setText(CommonUtils.getSecondsWithDecimalFormat(tempMillis));
+                mMillis.setText(CommonUtils.getMillisWithDecimalFormat(tempMillis));
             }
         });
     }

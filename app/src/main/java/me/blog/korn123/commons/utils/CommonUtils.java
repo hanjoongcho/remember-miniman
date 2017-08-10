@@ -57,12 +57,11 @@ public class CommonUtils {
         return decimalFormat.format(temp % 1);
     }
 
-    public static void threadSleep(long millis) {
+    public static void threadSleepWithoutException(long millis) {
         try {
             Thread.sleep(millis);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
-
 }
