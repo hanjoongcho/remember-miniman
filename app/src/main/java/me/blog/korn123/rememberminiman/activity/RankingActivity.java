@@ -1,6 +1,5 @@
 package me.blog.korn123.rememberminiman.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -11,9 +10,10 @@ import android.view.View;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.blog.korn123.rememberminiman.R;
-import me.blog.korn123.rememberminiman.fragment.RankingS1Fragment;
-import me.blog.korn123.rememberminiman.fragment.RankingS2Fragment;
-import me.blog.korn123.rememberminiman.fragment.RankingS3Fragment;
+import me.blog.korn123.rememberminiman.fragment.RankingT1Fragment;
+import me.blog.korn123.rememberminiman.fragment.RankingT2Fragment;
+import me.blog.korn123.rememberminiman.fragment.RankingT3Fragment;
+import me.blog.korn123.rememberminiman.fragment.RankingT4Fragment;
 
 /**
  * Created by CHO HANJOONG on 2017-08-09.
@@ -33,10 +33,10 @@ public class RankingActivity extends BaseActivity {
         // Create the adapter that will return a fragment for each section
         mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             private final Fragment[] mFragments = new Fragment[] {
-                    new RankingS1Fragment(),
-                    new RankingS2Fragment(),
-                    new RankingS3Fragment(),
-                    new RankingS3Fragment(),
+                    new RankingT1Fragment(),
+                    new RankingT2Fragment(),
+                    new RankingT3Fragment(),
+                    new RankingT4Fragment(),
             };
             private final String[] mFragmentNames = new String[] {
                     "Stage1",

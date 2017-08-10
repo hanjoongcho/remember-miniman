@@ -1,5 +1,6 @@
 package me.blog.korn123.rememberminiman.fragment;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,7 +30,7 @@ public abstract class RankingListFragment extends Fragment {
     private FirebaseRecyclerAdapter<RankingCard, RankingViewHolder> mAdapter;
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
-
+    private ProgressBar mProgressBar;
     public RankingListFragment() {}
 
     @Override
@@ -43,6 +45,8 @@ public abstract class RankingListFragment extends Fragment {
 
         mRecycler = (RecyclerView) rootView.findViewById(R.id.messages_list);
         mRecycler.setHasFixedSize(true);
+
+        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
 
         return rootView;
     }
@@ -87,6 +91,13 @@ public abstract class RankingListFragment extends Fragment {
                 // Bind Post to ViewHolder, setting OnClickListener for the star button
                 viewHolder.bindToCard(model, position, getContext(), getActivity().getAssets());
             }
+
+            @Override
+            protected void onDataChanged() {
+                super.onDataChanged();
+                mProgressBar.setVisibility(View.GONE);
+            }
+
         };
         mRecycler.setAdapter(mAdapter);
     }

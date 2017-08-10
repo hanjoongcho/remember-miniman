@@ -15,4 +15,10 @@
         android:scrollbars="vertical"
         tools:listitem="@layout/item_ranking" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_gravity="center"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+
 </FrameLayout>

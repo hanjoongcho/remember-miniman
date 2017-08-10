@@ -64,4 +64,12 @@ public class CommonUtils {
             e.printStackTrace();
         }
     }
+
+    public static String usernameFromEmail(String email) {
+        if (email.contains("@")) {
+            return email.split("@")[0];
+        } else {
+            return email;
+        }
+    }
 }

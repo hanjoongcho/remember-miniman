@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import me.blog.korn123.commons.utils.CommonUtils;
 import me.blog.korn123.rememberminiman.R;
 import me.blog.korn123.rememberminiman.model.RankingCard;
 import me.blog.korn123.rememberminiman.model.User;
@@ -118,7 +119,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void onAuthSuccess(FirebaseUser user) {
-        String username = usernameFromEmail(user.getEmail());
+        String username = CommonUtils.usernameFromEmail(user.getEmail());
 
         // Write new user
         writeNewUser(user.getUid(), username, user.getEmail());
@@ -126,14 +127,6 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         // Go to MainActivity
         startActivity(new Intent(SignInActivity.this, RankingActivity.class));
         finish();
-    }
-
-    private String usernameFromEmail(String email) {
-        if (email.contains("@")) {
-            return email.split("@")[0];
-        } else {
-            return email;
-        }
     }
 
     private boolean validateForm() {

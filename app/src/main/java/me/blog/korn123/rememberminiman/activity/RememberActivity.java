@@ -100,7 +100,7 @@ public class RememberActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 TextView verifyResult = (TextView) view.findViewById(R.id.verifyResult);
-                if (StringUtils.contains(verifyResult.getText(), "st")) {
+                if (StringUtils.contains(verifyResult.getText(), "st") || correctCount >= 8) {
                     return;
                 }
 
@@ -233,7 +233,7 @@ public class RememberActivity extends AppCompatActivity {
                             }
                         }).start();
                     } else {
-
+                        registerElapsedTime(FirebaseAuth.getInstance().getCurrentUser(), "/ranking/total/", Float.valueOf(String.valueOf(mBody5.getText())));
                         mResultMessage.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 70);
                         mResultMessage.setText("try again");
                         mResultMessage.setOnClickListener(new View.OnClickListener() {
@@ -299,7 +299,7 @@ public class RememberActivity extends AppCompatActivity {
         // if registration is possible
         if (firebaseUser != null) {
             String key = mDatabase.child("ranking").child("stage1").push().getKey();
-            RankingCard rankingCard = new RankingCard(-1, firebaseUser.getEmail(), elapsedTime);
+            RankingCard rankingCard = new RankingCard(-1, CommonUtils.usernameFromEmail(firebaseUser.getEmail()), elapsedTime);
             Map<String, Object> postValues = rankingCard.toMap();
             Map<String, Object> childUpdates = new HashMap<>();
             childUpdates.put(nodeName + key, postValues);
@@ -315,7 +315,6 @@ public class RememberActivity extends AppCompatActivity {
                 verifyResult.setVisibility(View.GONE);
             }
         }
-
     }
 
 }

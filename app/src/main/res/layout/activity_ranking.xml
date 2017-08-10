@@ -12,6 +12,7 @@
         app:tabTextColor="@color/rankingTabTextColor"
         app:tabSelectedTextColor="@color/rankingTabSelectedTextColor"
         app:tabIndicatorColor="@color/rankingTabSelectedTextColor"
+        app:tabIndicatorHeight="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

@@ -7,13 +7,13 @@ import com.google.firebase.database.Query;
  * Created by CHO HANJOONG on 2017-08-09.
  */
 
-public class RankingS2Fragment extends RankingListFragment {
+public class RankingT3Fragment extends RankingListFragment {
 
-    public RankingS2Fragment() {}
+    public RankingT3Fragment() {}
 
     @Override
     public Query getQuery(DatabaseReference databaseReference) {
         // only stage1 ranking
-        return databaseReference.child("ranking").child("stage2");
+        return databaseReference.child("ranking").child("stage3");
     }
 }
