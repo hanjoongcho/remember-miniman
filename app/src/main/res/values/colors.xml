@@ -6,7 +6,12 @@
 
     <color name="gameBoardBackground">#FFFFFF</color>
     <color name="resultCardBackground">#f1000000</color>
-    <color name="emphasisTextColor">#FF0000</color>
-    <color name="normalTextColor">#404040</color>
+    <color name="emphasisText">#FF0000</color>
+    <color name="normalText">#404040</color>
+
+    <color name="rankingTabText">#AFFFFFFF</color>
+    <color name="rankingTabSelectedText">#FFFFFF</color>
+    <color name="rankingTabBackground">#000000</color>
+    <color name="rankingBackground">#FFFFFF</color>
 
 </resources>

@@ -12,20 +12,29 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.StopWatch;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.blog.korn123.commons.constants.Constants;
+import me.blog.korn123.commons.utils.CommonUtils;
 import me.blog.korn123.commons.utils.FontUtils;
 import me.blog.korn123.rememberminiman.R;
 import me.blog.korn123.rememberminiman.adapter.CharacterCardAdapter;
 import me.blog.korn123.rememberminiman.model.CharacterCard;
+import me.blog.korn123.rememberminiman.model.RankingCard;
 
 /**
  * Created by hanjoong on 2017-08-06.
@@ -33,9 +42,13 @@ import me.blog.korn123.rememberminiman.model.CharacterCard;
 
 public class RememberActivity extends AppCompatActivity {
 
+    private final int ELAPSE_TIME_UPDATE_INTERVAL = 60;
+    private StopWatch mStopWatch;
+    private DatabaseReference mDatabase;
     private int correctCount = 0;
     private int mMaximumCard = 3;
     private Thread mTimer;
+    private boolean mClearStage = false;
 
     @BindView(R.id.itemGrid) GridView mGridView;
     @BindView(R.id.resultMessage)  TextView mResultMessage;
@@ -58,11 +71,12 @@ public class RememberActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remember);
         ButterKnife.bind(this);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         // step1 init cards
         List<CharacterCard> characterCards = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            CharacterCard characterCard = new CharacterCard(getResourceId("miniman_" + (i + 1), "raw"), "miniman_" + (i + 1));
+            CharacterCard characterCard = new CharacterCard(CommonUtils.getResourceId(getResources(), getPackageName(), "miniman_" + (i + 1), "raw"), "miniman_" + (i + 1));
             characterCards.add(characterCard);
         }
 
@@ -86,7 +100,7 @@ public class RememberActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 TextView verifyResult = (TextView) view.findViewById(R.id.verifyResult);
-                if (StringUtils.contains(verifyResult.getText(), "st")) {
+                if (StringUtils.contains(verifyResult.getText(), "st") || correctCount >= 8) {
                     return;
                 }
 
@@ -183,18 +197,21 @@ public class RememberActivity extends AppCompatActivity {
                             // setting next stage max card count
                             mMaximumCard = 5;
                             intent.putExtra("elapse1", elapseTime);
+                            registerElapsedTime(FirebaseAuth.getInstance().getCurrentUser(), "/ranking/stage1/", Float.valueOf(elapseTime));
                             break;
                         case 5:
                             mBody3.setText(elapseTime);
                             mMaximumCard = 8;
                             intent.putExtra("elapse1", getIntent().getStringExtra("elapse1"));
                             intent.putExtra("elapse2", elapseTime);
+                            registerElapsedTime(FirebaseAuth.getInstance().getCurrentUser(), "/ranking/stage2/", Float.valueOf(elapseTime));
                             break;
                         case 8:
                             mBody4.setText(elapseTime);
+                            registerElapsedTime(FirebaseAuth.getInstance().getCurrentUser(), "/ranking/stage3/", Float.valueOf(elapseTime));
                             break;
                     }
-
+                    mClearStage = true;
                     mTimer.interrupt();
                     float total = Float.valueOf(String.valueOf(mSeconds.getText()) + String.valueOf(mMillis.getText()));
                     if (getIntent().getStringExtra("elapse1") != null) total += Float.valueOf(getIntent().getStringExtra("elapse1"));
@@ -210,16 +227,13 @@ public class RememberActivity extends AppCompatActivity {
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                try {
-                                    Thread.sleep(2000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
+                                CommonUtils.threadSleepWithoutException(2000);
                                 startActivity(intent);
                                 finish();
                             }
                         }).start();
                     } else {
+                        registerElapsedTime(FirebaseAuth.getInstance().getCurrentUser(), "/ranking/total/", Float.valueOf(String.valueOf(mBody5.getText())));
                         mResultMessage.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 70);
                         mResultMessage.setText("try again");
                         mResultMessage.setOnClickListener(new View.OnClickListener() {
@@ -250,42 +264,47 @@ public class RememberActivity extends AppCompatActivity {
 
         mSeconds.setTypeface(typeface);
         mMillis.setTypeface(typeface);
-
+        mStopWatch = new StopWatch();
         mTimer = new Thread(new Runnable() {
-            int currentSeconds = 0;
-            StopWatch stopWatch = new StopWatch();
-            DecimalFormat secondsFormat = new DecimalFormat("#0");
-            DecimalFormat millisFormat = new DecimalFormat("#.00");
             @Override
             public void run() {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                stopWatch.start();
-                while(correctCount < mMaximumCard) {
-                    new Handler(Looper.getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() {
-                            mSeconds.setText(secondsFormat.format(stopWatch.getTime()/1000f));
-                            float temp = Float.valueOf(millisFormat.format(stopWatch.getTime()/1000f));
-                            float temp2 = temp % 1;
-                            mMillis.setText(millisFormat.format(temp2));
-//                            Log.i("elap", elapseTime);
-                        }
-                    });
-
+                CommonUtils.threadSleepWithoutException(2000);
+                mStopWatch.start();
+                while(!mTimer.isInterrupted()) {
                     try {
-                        Thread.sleep(60);
+                        Thread.sleep(ELAPSE_TIME_UPDATE_INTERVAL);
+                        updateDisplayElapseTime();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
+                        break;
                     }
-                    currentSeconds++;
                 }
             }
         });
         mTimer.start();
+    }
+
+    private void updateDisplayElapseTime() {
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                long tempMillis = mStopWatch.getTime();
+                mSeconds.setText(CommonUtils.getSecondsWithDecimalFormat(tempMillis));
+                mMillis.setText(CommonUtils.getMillisWithDecimalFormat(tempMillis));
+            }
+        });
+    }
+
+    private void registerElapsedTime(FirebaseUser firebaseUser, String nodeName, float elapsedTime) {
+        // if registration is possible
+        if (firebaseUser != null) {
+            String key = mDatabase.child("ranking").child("stage1").push().getKey();
+            RankingCard rankingCard = new RankingCard(-1, CommonUtils.usernameFromEmail(firebaseUser.getEmail()), elapsedTime);
+            Map<String, Object> postValues = rankingCard.toMap();
+            Map<String, Object> childUpdates = new HashMap<>();
+            childUpdates.put(nodeName + key, postValues);
+            mDatabase.updateChildren(childUpdates);
+        }
     }
 
     private void resetIncorrectCards() {
@@ -296,15 +315,6 @@ public class RememberActivity extends AppCompatActivity {
                 verifyResult.setVisibility(View.GONE);
             }
         }
-
     }
 
-    public int getResourceId(String pVariableName, String pResourcename) {
-        try {
-            return getResources().getIdentifier(pVariableName, pResourcename, getPackageName());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
-        }
-    }
 }

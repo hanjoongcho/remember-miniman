@@ -100,16 +100,6 @@ public class MemorizeActivity extends AppCompatActivity {
         });
     }
 
-
-    public int getResourceId(String pVariableName, String pResourcename) {
-        try {
-            return getResources().getIdentifier(pVariableName, pResourcename, getPackageName());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
-        }
-    }
-
     class IconRenderThread extends Thread {
 
         Context context;
@@ -140,7 +130,7 @@ public class MemorizeActivity extends AppCompatActivity {
             pathView.setPathWidth(CommonUtils.dpToPixel(context, 1));
 //            pathView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 //            pathView.setLayoutParams(new ViewGroup.LayoutParams(CommonUtils.dpToPixel(context, 145), CommonUtils.dpToPixel(context, 150)));
-            pathView.setSvgResource(getResourceId(mCardIds.get(iconIndex), "raw"));
+            pathView.setSvgResource(CommonUtils.getResourceId(getResources(), getPackageName(), mCardIds.get(iconIndex), "raw"));
             pathView.useNaturalColors();
             pathView.setFillAfter(true);
             final PathView.AnimatorBuilder animatorBuilder;
