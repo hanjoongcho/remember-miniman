@@ -29,6 +29,7 @@ public class RankingActivity extends BaseActivity {
     private FragmentPagerAdapter mPagerAdapter;
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
+    private boolean initTabView = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,15 +74,19 @@ public class RankingActivity extends BaseActivity {
         mTabLayout.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
             public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
-                ViewGroup viewGroup = (ViewGroup) mTabLayout.getChildAt(0);
-                for (int k = 0; k < viewGroup.getChildCount(); k++) {
-                    ViewGroup tabView = (ViewGroup) viewGroup.getChildAt(k);
-                    Typeface typeface = FontUtils.createTypeface("OpenSans-Regular.ttf", getAssets());
-                    for (int l = 0; l < tabView.getChildCount(); l++) {
-                        if (tabView.getChildAt(l) instanceof TextView) {
-                            TextView tv = (TextView) tabView.getChildAt(l);
-                            tv.setAllCaps(false);
-                            tv.setTypeface(typeface);
+                if (!initTabView) {
+                    initTabView = true;
+                    Log.i("call", "here to here");
+                    ViewGroup viewGroup = (ViewGroup) mTabLayout.getChildAt(0);
+                    for (int k = 0; k < viewGroup.getChildCount(); k++) {
+                        ViewGroup tabView = (ViewGroup) viewGroup.getChildAt(k);
+                        Typeface typeface = FontUtils.createTypeface("OpenSans-Regular.ttf", getAssets());
+                        for (int l = 0; l < tabView.getChildCount(); l++) {
+                            if (tabView.getChildAt(l) instanceof TextView) {
+                                TextView tv = (TextView) tabView.getChildAt(l);
+                                tv.setAllCaps(false);
+                                tv.setTypeface(typeface);
+                            }
                         }
                     }
                 }
