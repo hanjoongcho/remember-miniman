@@ -2,17 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/rankingBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.RankingActivity">
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"
-        android:background="@color/colorAccent"
-        app:tabTextColor="@color/rankingTabTextColor"
-        app:tabSelectedTextColor="@color/rankingTabSelectedTextColor"
-        app:tabIndicatorColor="@color/rankingTabSelectedTextColor"
-        app:tabIndicatorHeight="5dp"
+        android:background="@color/rankingTabBackground"
+        app:tabTextColor="@color/rankingTabText"
+        app:tabSelectedTextColor="@color/rankingTabSelectedText"
+        app:tabIndicatorColor="@color/colorAccent"
+        app:tabIndicatorHeight="3dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

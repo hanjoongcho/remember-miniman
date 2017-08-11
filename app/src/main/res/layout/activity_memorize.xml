@@ -12,7 +12,7 @@
         android:id="@+id/title"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:textColor="@color/emphasisTextColor"
+        android:textColor="@color/emphasisText"
         android:textSize="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -32,7 +32,7 @@
             <TextView
                 android:layout_marginBottom="50dp"
                 android:gravity="center"
-                android:textColor="@color/normalTextColor"
+                android:textColor="@color/normalText"
                 android:textSize="80dp"
                 android:id="@+id/minimanSequence"
                 android:layout_width="match_parent"
@@ -57,7 +57,7 @@
             <TextView
                 android:layout_marginBottom="20dp"
                 android:gravity="center"
-                android:textColor="@color/normalTextColor"
+                android:textColor="@color/normalText"
                 android:textSize="25dp"
                 android:id="@+id/guideMessage"
                 android:layout_width="match_parent"
@@ -66,7 +66,7 @@
                 android:paddingRight="50dp"
                 android:text="OK"
                 android:gravity="right"
-                android:textColor="@color/normalTextColor"
+                android:textColor="@color/normalText"
                 android:textSize="50dp"
                 android:id="@+id/confirm"
                 android:layout_width="match_parent"

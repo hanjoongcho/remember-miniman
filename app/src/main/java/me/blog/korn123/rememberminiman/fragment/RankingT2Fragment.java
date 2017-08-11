@@ -14,6 +14,6 @@ public class RankingT2Fragment extends RankingListFragment {
     @Override
     public Query getQuery(DatabaseReference databaseReference) {
         // only stage1 ranking
-        return databaseReference.child("ranking").child("stage2");
+        return databaseReference.child("ranking").child("stage2").orderByChild("recordTime");
     }
 }
