@@ -1,14 +1,19 @@
 package me.blog.korn123.rememberminiman.activity;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import me.blog.korn123.commons.utils.FontUtils;
 import me.blog.korn123.rememberminiman.R;
 import me.blog.korn123.rememberminiman.fragment.RankingT1Fragment;
 import me.blog.korn123.rememberminiman.fragment.RankingT2Fragment;
@@ -23,6 +28,7 @@ public class RankingActivity extends BaseActivity {
 
     private FragmentPagerAdapter mPagerAdapter;
     private ViewPager mViewPager;
+    private TabLayout mTabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +45,9 @@ public class RankingActivity extends BaseActivity {
                     new RankingT4Fragment(),
             };
             private final String[] mFragmentNames = new String[] {
-                    "Stage1",
-                    "Stage2" ,
-                    "Stage3",
+                    "Stage 1",
+                    "Stage 2" ,
+                    "Stage 3",
                     "Total"
             };
             @Override
@@ -60,8 +66,27 @@ public class RankingActivity extends BaseActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mPagerAdapter);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
+        mTabLayout = (TabLayout) findViewById(R.id.tabs);
+        mTabLayout.setupWithViewPager(mViewPager);
+
+        // Change tabview style
+        mTabLayout.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+                ViewGroup viewGroup = (ViewGroup) mTabLayout.getChildAt(0);
+                for (int k = 0; k < viewGroup.getChildCount(); k++) {
+                    ViewGroup tabView = (ViewGroup) viewGroup.getChildAt(k);
+                    Typeface typeface = FontUtils.createTypeface("OpenSans-Regular.ttf", getAssets());
+                    for (int l = 0; l < tabView.getChildCount(); l++) {
+                        if (tabView.getChildAt(l) instanceof TextView) {
+                            TextView tv = (TextView) tabView.getChildAt(l);
+                            tv.setAllCaps(false);
+                            tv.setTypeface(typeface);
+                        }
+                    }
+                }
+            }
+        });
     }
 
     @OnClick({R.id.back})
