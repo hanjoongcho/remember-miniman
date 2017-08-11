@@ -2,14 +2,25 @@
     <string name="app_name">Remember Miniman</string>
     <string name="action_settings">Settings</string>
 
+    <!--MainActivity-->
+    <string name="menu_1">시작</string>
+    <string name="menu_2">랭킹</string>
+    <string name="menu_3">라이선스</string>
+
     <!--MemorizeActivity-->
     <string name="stage_1_guide_message">연속되는 3명의 Miniman을 기억하세요.</string>
     <string name="stage_2_guide_message">연속되는 5명의 Miniman을 기억하세요.</string>
     <string name="stage_3_guide_message">연속되는 8명의 Miniman을 기억하세요.</string>
 
+    <!--SingInActivity-->
+    <string name="sign1_guide_message">랭킹기능을 이용하려면 Remember Miniman 계정을 생성해야 합니다.</string>
+    <string name="sign2_guide_message">ID는 본인이 사용하는 이메일 계정이어야 합니다.</string>
+    <string name="sign3_guide_message">비밀번호는 6자이상 이어야 합니다.</string>
+
     <!--SignInActivity-->
-    <string name="sign_up">Sign Up</string>
-    <string name="hint_password">password</string>
-    <string name="hint_email">email</string>
-    <string name="sign_in">Sign In</string>
+    <string name="sign_in_title">랭킹등록 로그인</string>
+    <string name="sign_in">로그인</string>
+    <string name="sign_up">랭킹계정 등록</string>
+    <string name="hint_password">패스워드</string>
+    <string name="hint_email">이메일</string>
 </resources>

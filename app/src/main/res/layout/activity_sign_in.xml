@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".activity.SignInActivity">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:src="@drawable/firebase_lockup_400" />
+    <TextView
+        android:layout_marginBottom="30dp"
+        android:id="@+id/title"
+        android:text="@string/sign_in_title"
+        android:gravity="center"
+        android:textColor="@color/normalText"
+        android:textSize="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
+        android:layout_marginBottom="10dp"
         android:id="@+id/layout_email_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,7 +25,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/field_email"
+            android:id="@+id/fieldEmail"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -36,7 +35,7 @@
             android:maxLines="1" />
 
         <EditText
-            android:id="@+id/field_password"
+            android:id="@+id/fieldPassword"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -48,26 +47,73 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/layout_buttons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/layout_email_password"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/button_sign_in"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="@string/sign_in" />
-
-
-        <Button
-            android:id="@+id/button_sign_up"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="@string/sign_up" />
-
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="* "
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/guideMessage1"
+            android:textSize="20dp"
+            android:text="@string/sign1_guide_message"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="* "
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/guideMessage2"
+            android:textSize="20dp"
+            android:text="@string/sign2_guide_message"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="* "
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/guideMessage3"
+            android:textSize="20dp"
+            android:text="@string/sign3_guide_message"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
-</RelativeLayout>
+    <TextView
+        android:layout_marginBottom="30dp"
+        android:id="@+id/singIn"
+        android:text="@string/sign_in"
+        android:gravity="center"
+        android:textColor="@color/normalText"
+        android:textSize="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginBottom="30dp"
+        android:id="@+id/singUp"
+        android:text="@string/sign_up"
+        android:gravity="center"
+        android:textColor="@color/normalText"
+        android:textSize="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

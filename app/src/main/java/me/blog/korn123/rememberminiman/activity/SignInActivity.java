@@ -6,8 +6,8 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,40 +18,46 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import me.blog.korn123.commons.utils.CommonUtils;
+import me.blog.korn123.commons.utils.FontUtils;
 import me.blog.korn123.rememberminiman.R;
-import me.blog.korn123.rememberminiman.model.RankingCard;
 import me.blog.korn123.rememberminiman.model.User;
 
 public class SignInActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = "SignInActivity";
-
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
 
-    private EditText mEmailField;
-    private EditText mPasswordField;
-    private Button mSignInButton;
-    private Button mSignUpButton;
+    @BindView(R.id.fieldEmail) EditText mFieldEmail;
+    @BindView(R.id.fieldPassword) EditText mFieldPassword;
+    @BindView(R.id.title) TextView mTitle;
+    @BindView(R.id.singIn) TextView mSingIn;
+    @BindView(R.id.singUp) TextView mSingUp;
+    @BindView(R.id.guideMessage1) TextView mGuideMessage1;
+    @BindView(R.id.guideMessage2) TextView mGuideMessage2;
+    @BindView(R.id.guideMessage3) TextView mGuideMessage3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+        ButterKnife.bind(this);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
 
-        // Views
-        mEmailField = (EditText) findViewById(R.id.field_email);
-        mPasswordField = (EditText) findViewById(R.id.field_password);
-        mSignInButton = (Button) findViewById(R.id.button_sign_in);
-        mSignUpButton = (Button) findViewById(R.id.button_sign_up);
-
-        // Click listeners
-        mSignInButton.setOnClickListener(this);
-        mSignUpButton.setOnClickListener(this);
+        FontUtils.setTypeface(this, getAssets(), mFieldEmail);
+        FontUtils.setTypeface(this, getAssets(), mFieldPassword);
+        FontUtils.setTypeface(this, getAssets(), mTitle);
+        FontUtils.setTypeface(this, getAssets(), mSingIn);
+        FontUtils.setTypeface(this, getAssets(), mSingUp);
+        FontUtils.setTypeface(this, getAssets(), mGuideMessage1);
+        FontUtils.setTypeface(this, getAssets(), mGuideMessage2);
+        FontUtils.setTypeface(this, getAssets(), mGuideMessage3);
     }
 
     @Override
@@ -71,8 +77,8 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         }
 
         showProgressDialog();
-        String email = mEmailField.getText().toString();
-        String password = mPasswordField.getText().toString();
+        String email = mFieldEmail.getText().toString();
+        String password = mFieldPassword.getText().toString();
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -98,8 +104,8 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         }
 
         showProgressDialog();
-        String email = mEmailField.getText().toString();
-        String password = mPasswordField.getText().toString();
+        String email = mFieldEmail.getText().toString();
+        String password = mFieldPassword.getText().toString();
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -111,8 +117,8 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                         if (task.isSuccessful()) {
                             onAuthSuccess(task.getResult().getUser());
                         } else {
-                            Toast.makeText(SignInActivity.this, "Sign Up Failed",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignInActivity.this, task.getException().getMessage(),
+                                    Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -131,18 +137,18 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 
     private boolean validateForm() {
         boolean result = true;
-        if (TextUtils.isEmpty(mEmailField.getText().toString())) {
-            mEmailField.setError("Required");
+        if (TextUtils.isEmpty(mFieldEmail.getText().toString())) {
+            mFieldEmail.setError("Required");
             result = false;
         } else {
-            mEmailField.setError(null);
+            mFieldEmail.setError(null);
         }
 
-        if (TextUtils.isEmpty(mPasswordField.getText().toString())) {
-            mPasswordField.setError("Required");
+        if (TextUtils.isEmpty(mFieldPassword.getText().toString())) {
+            mFieldPassword.setError("Required");
             result = false;
         } else {
-            mPasswordField.setError(null);
+            mFieldPassword.setError(null);
         }
 
         return result;
@@ -156,13 +162,16 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
     }
     // [END basic_write]
 
-    @Override
-    public void onClick(View v) {
-        int i = v.getId();
-        if (i == R.id.button_sign_in) {
-            signIn();
-        } else if (i == R.id.button_sign_up) {
-            signUp();
+    @OnClick({R.id.singIn, R.id.singUp})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.singIn:
+                signIn();
+                break;
+            case R.id.singUp:
+                signUp();
+                break;
         }
     }
+
 }

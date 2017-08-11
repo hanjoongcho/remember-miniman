@@ -2,8 +2,25 @@
     <string name="app_name">Remember Miniman</string>
     <string name="action_settings">Settings</string>
 
+    <!--MainActivity-->
+    <string name="menu_1">START</string>
+    <string name="menu_2">RANKING</string>
+    <string name="menu_3">LICENSE</string>
+
     <!--MemorizeActivity-->
     <string name="stage_1_guide_message">Remember 3 Miniman in order.</string>
     <string name="stage_2_guide_message">Remember 5 Miniman in order.</string>
     <string name="stage_3_guide_message">Remember 8 Miniman in order.</string>
+
+    <!--SingInActivity-->
+    <string name="sign1_guide_message">To use the ranking feature, you must create a Remember Miniman account.</string>
+    <string name="sign2_guide_message">The ID must be an email account that you use.</string>
+    <string name="sign3_guide_message">Password must be at least 6 characters long.</string>
+
+    <!--SignInActivity-->
+    <string name="sign_in_title">Ranking Login</string>
+    <string name="sign_in">Sing In</string>
+    <string name="sign_up">Sing Up</string>
+    <string name="hint_password">password</string>
+    <string name="hint_email">email</string>
 </resources>
