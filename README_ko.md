@@ -1,8 +1,9 @@
 # :bulb: Remember Mini Man
-[![License][licensesvg]][license] <br />
+[![License][licensesvg]][LICENSE.md] <br />
 기억력을 이용하는 간단한 게임입니다. <br />
 안드로이드 프로그램 개발을 시작하는 개발자들을 위해서 주요 안드로이드 lib들을 매쉬업하여 간단한 게임을 만들었습니다.
 <a href='https://play.google.com/store/apps/details?id=me.blog.korn123.rememberminiman'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="323" height="125"/></a><br />
+[README of English][README_en.md]
 
 # 게임방법
 ```
@@ -39,7 +40,9 @@ Step3. 아래 링크를 이용해서 svg 이미지를 Flaticon 사이트에서 �
 Step4. 선호하는 20개의 svg 이미지를 선택해서 아래 예시처럼 파일명을 변경한다.
        ex> miniman_1.svg, miniman_2.svg, ..., miniman_19.svg, miniman_20.svg
 Step5. 이름이 변경된 20개의 svg이미지를 '/app/src/main/res/raw' 디렉토리에 복사한다.
-Step6. 안드로이드 스튜디오에서 'remember-miniman' 프로젝트를 빌드한다.
+Step6. Firebase 콘솔에서 프로젝트를 생성한다.(https://firebase.google.com/)
+Step7. Firebase 콘솔에서 'google-services.json' 파일을 다운로드 후 '/remember-miniman/app/' 디렉토리에 복사한다.
+Step8. 안드로이드 스튜디오에서 'remember-miniman' 프로젝트를 빌드한다.
 ```
 [Flaticon 사이트에서 svg images 다운받기][1]
 
@@ -48,5 +51,5 @@ Step6. 안드로이드 스튜디오에서 'remember-miniman' 프로젝트를 빌
 
 [1]: https://www.flaticon.com/packs/miniman
 [licensesvg]: https://img.shields.io/badge/License-Apache--2.0-brightgreen.svg
-[license]: https://github.com/hanjoongcho/remember-miniman/blob/master/LICENSE.md
+[README_en.md]: https://github.com/hanjoongcho/remember-miniman/blob/master/README_ko.md
 [LICENSE.md]: https://github.com/hanjoongcho/remember-miniman/blob/master/LICENSE.md
