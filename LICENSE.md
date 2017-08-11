@@ -125,7 +125,7 @@ Creative Commons may be contacted at https://creativecommons.org/.
 ```
 
 
-### ttf fonts
+### nanum fonts
 http://hangeul.naver.com/2016/nanum
 ```
 Copyright (c) 2010, NAVER Corporation (http://www.nhncorp.com),
@@ -134,6 +134,18 @@ This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at: http://scripts.sil.org/OFL
 SIL OPEN FONT LICENSE
 Version 1.1 - 26 February 2007
+```
+
+### opensans fonts
+https://www.fontsquirrel.com/fonts/open-sans
+```
+Apache License v2.00
+
+This license can also be found at this permalink: https://www.fontsquirrel.com/license/open-sans
+
+Apache License
+                  Version 2.0, January 2004
+                http://www.apache.org/licenses/
 ```
 
 ### android-pathview
