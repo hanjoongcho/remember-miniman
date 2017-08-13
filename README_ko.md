@@ -1,13 +1,12 @@
 # :bulb: Remember Mini Man
 [![License][licensesvg]][LICENSE.md] <br />
+[README of English][README_en.md] <br />
 기억력을 이용하는 간단한 게임입니다. <br />
 안드로이드 프로그램 개발을 시작하는 개발자들을 위해서 주요 안드로이드 lib들을 매쉬업하여 간단한 게임을 만들었습니다.
 
 <a href='https://play.google.com/store/apps/details?id=me.blog.korn123.rememberminiman'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="323" height="125"/></a><br />
 
 <img src="screenshots/intro_1_ko.png" width="288" height="512">
-
-[README of English][README_en.md]
 
 # 게임방법
 ```
