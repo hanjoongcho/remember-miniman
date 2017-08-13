@@ -2,7 +2,11 @@
 [![License][licensesvg]][LICENSE.md] <br />
 기억력을 이용하는 간단한 게임입니다. <br />
 안드로이드 프로그램 개발을 시작하는 개발자들을 위해서 주요 안드로이드 lib들을 매쉬업하여 간단한 게임을 만들었습니다.
+
 <a href='https://play.google.com/store/apps/details?id=me.blog.korn123.rememberminiman'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="323" height="125"/></a><br />
+
+<img src="screenshots/intro_1_ko.png" width="288" height="512">
+
 [README of English][README_en.md]
 
 # 게임방법
@@ -22,15 +26,21 @@ Step2. Miniman을 순서대로 선택한다.
 <img src="screenshots/play_1.png" width="288" height="512">&nbsp;
 <img src="screenshots/play_2.png" width="288" height="512">
 
-
 ```
 Step3. 3번의 게임이 모두 끝날때까지 동일한 방법으로 반복한다.
        최종 기록은 3번의 게임을 진행하는동안 소요된 시간의 합계다.
-       Firebase Realtime Database를 이용한 랭킹등록기능은 추후에 만들 예정이다.
 ```
 <img src="screenshots/play_3.png" width="288" height="512">&nbsp;
 <img src="screenshots/play_4.png" width="288" height="512">&nbsp;
 <img src="screenshots/play_5.png" width="288" height="512">&nbsp;
+
+```
+Step4. 랭킹등록을 위한 계정을 생성한다. (Firebase Database)
+       ID는 본인이 사용하는 이메일계정 이어야 한다.
+       비밀번호는 6자이상 이어야 한다.
+```
+<img src="screenshots/ranking_1_ko.png" width="288" height="512">&nbsp;
+<img src="screenshots/ranking_2.gif" width="288" height="512">&nbsp;
 
 # 빌드방법
 ```

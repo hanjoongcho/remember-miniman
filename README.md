@@ -1,7 +1,11 @@
 # :bulb: Remember Mini Man
 [![License][licensesvg]][LICENSE.md] <br />
 This is a simple board game using memory. <br />
-<a href='https://play.google.com/store/apps/details?id=me.blog.korn123.rememberminiman'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="323" height="125"/></a><br />
+
+<a href='https://play.google.com/store/apps/details?id=me.blog.korn123.rememberminiman'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="258" height="98"/></a><br />
+
+<img src="screenshots/intro_1_en.png" width="288" height="512">
+
 [README of Korean][README_ko.md]
 
 # How to play
@@ -21,7 +25,6 @@ Step2. Choose Miniman in order.
 <img src="screenshots/play_1.png" width="288" height="512">&nbsp;
 <img src="screenshots/play_2.png" width="288" height="512">
 
-
 ```
 Step3. Repeat to stage three.
        The final record is the sum of the elapsed times of all stages.
@@ -30,6 +33,14 @@ Step3. Repeat to stage three.
 <img src="screenshots/play_3.png" width="288" height="512">&nbsp;
 <img src="screenshots/play_4.png" width="288" height="512">&nbsp;
 <img src="screenshots/play_5.png" width="288" height="512">&nbsp;
+
+```
+Step4. Create an account for ranking. (Firebase Database)
+       The ID must be an email account that you use.
+       Password must be at least 6 characters long.
+```
+<img src="screenshots/ranking_1_en.png" width="288" height="512">&nbsp;
+<img src="screenshots/ranking_2.gif" width="288" height="512">&nbsp;
 
 # How to build
 ```
