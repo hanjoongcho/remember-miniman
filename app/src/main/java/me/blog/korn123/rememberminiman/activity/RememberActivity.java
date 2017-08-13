@@ -94,7 +94,7 @@ public class RememberActivity extends AppCompatActivity {
         if (getIntent().getStringExtra("elapse1") != null) mBody2.setText(String.valueOf(getIntent().getStringExtra("elapse1")));
         if (getIntent().getStringExtra("elapse2") != null) mBody3.setText(String.valueOf(getIntent().getStringExtra("elapse2")));
 
-        CharacterCardAdapter characterCardAdapter = new CharacterCardAdapter(this, R.layout.adapter_character_card ,characterCards);
+        CharacterCardAdapter characterCardAdapter = new CharacterCardAdapter(this, R.layout.item_character_card,characterCards);
         mGridView.setAdapter(characterCardAdapter);
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

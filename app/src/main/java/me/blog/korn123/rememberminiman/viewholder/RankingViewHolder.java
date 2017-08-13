@@ -22,6 +22,7 @@ public class RankingViewHolder extends RecyclerView.ViewHolder{
     public TextView userNameView;
     public TextView recordTimeView;
     public ImageView imageView;
+    public boolean initTypeface = false;
 
     public RankingViewHolder(View itemView) {
         super(itemView);
@@ -33,13 +34,17 @@ public class RankingViewHolder extends RecyclerView.ViewHolder{
     }
 
     public void bindToCard(RankingCard rankingCard, int position, Context context, AssetManager assetManager) {
-        Typeface typeface = FontUtils.createTypeface("OpenSans-Regular.ttf", assetManager);
-        rankingNoView.setTypeface(typeface);
-        userNameView.setTypeface(typeface);
-        recordTimeView.setTypeface(typeface);
+        if (!initTypeface) {
+            Typeface typeface = FontUtils.createTypeface("OpenSans-Regular.ttf", assetManager);
+            rankingNoView.setTypeface(typeface);
+            userNameView.setTypeface(typeface);
+            recordTimeView.setTypeface(typeface);
 //        FontUtils.setTypeface(context, assetManager, rankingNoView);
 //        FontUtils.setTypeface(context, assetManager, userNameView);
 //        FontUtils.setTypeface(context, assetManager, recordTimeView);
+            initTypeface = true;
+        }
+
         rankingNoView.setText(String.valueOf(position + 1));
         userNameView.setText(String.valueOf(rankingCard.userName));
         recordTimeView.setText("elapsed time: " + String.valueOf(rankingCard.recordTime) + "s");

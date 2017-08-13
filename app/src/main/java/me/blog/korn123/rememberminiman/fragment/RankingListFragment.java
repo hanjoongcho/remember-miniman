@@ -1,8 +1,10 @@
 package me.blog.korn123.rememberminiman.fragment;
 
 import android.app.ProgressDialog;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
+import me.blog.korn123.commons.utils.CommonUtils;
 import me.blog.korn123.rememberminiman.R;
 import me.blog.korn123.rememberminiman.model.RankingCard;
 import me.blog.korn123.rememberminiman.viewholder.RankingViewHolder;
@@ -45,10 +48,26 @@ public abstract class RankingListFragment extends Fragment {
 
         mRecycler = (RecyclerView) rootView.findViewById(R.id.messages_list);
         mRecycler.setHasFixedSize(true);
+        mRecycler.addItemDecoration(new VerticalSpaceItemDecoration(CommonUtils.dpToPixel(getContext(), 5)));
 
         mProgressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
 
         return rootView;
+    }
+
+    public class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {
+
+        private final int verticalSpaceHeight;
+
+        public VerticalSpaceItemDecoration(int verticalSpaceHeight) {
+            this.verticalSpaceHeight = verticalSpaceHeight;
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
+                                   RecyclerView.State state) {
+            outRect.bottom = verticalSpaceHeight;
+        }
     }
 
     @Override

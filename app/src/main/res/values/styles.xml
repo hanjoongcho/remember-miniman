@@ -1,6 +1,6 @@
 <resources>
 
-    <!-- Base application theme. -->
+    <!-- application theme -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -18,7 +18,7 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
-    <!-- Base application style -->
+    <!-- application style -->
     <style name="RecordColumn">
         <item name="android:textSize">25dp</item>
         <item name="android:textColor">@color/normalText</item>
@@ -33,6 +33,13 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginBottom">5dp</item>
+    </style>
+
+    <style name="NavigationIcon">
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_width">10dp</item>
+        <item name="android:layout_height">10dp</item>
+        <item name="android:src">@drawable/ic_circle_default</item>
     </style>
 
 </resources>

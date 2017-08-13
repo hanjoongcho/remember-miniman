@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#181818</color>
     <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#f40818</color>
+    <color name="colorAccent">#000000</color>
 
     <color name="gameBoardBackground">#FFFFFF</color>
     <color name="resultCardBackground">#f1000000</color>
@@ -13,5 +13,8 @@
     <color name="rankingTabSelectedText">#FFFFFF</color>
     <color name="rankingTabBackground">#000000</color>
     <color name="rankingBackground">#FFFFFF</color>
+
+    <color name="navigationCircleDefault">#FFFFFF</color>
+    <color name="navigationCircleSelected">#FF0000</color>
 
 </resources>
