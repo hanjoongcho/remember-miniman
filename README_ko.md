@@ -51,5 +51,5 @@ Step8. 안드로이드 스튜디오에서 'remember-miniman' 프로젝트를 빌
 
 [1]: https://www.flaticon.com/packs/miniman
 [licensesvg]: https://img.shields.io/badge/License-Apache--2.0-brightgreen.svg
-[README_en.md]: https://github.com/hanjoongcho/remember-miniman/blob/master/README_ko.md
+[README_en.md]: https://github.com/hanjoongcho/remember-miniman/blob/master/README.md
 [LICENSE.md]: https://github.com/hanjoongcho/remember-miniman/blob/master/LICENSE.md
