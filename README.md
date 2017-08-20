@@ -1,5 +1,5 @@
 # :bulb: Remember Mini Man
-## [README of Korean][README_ko.md]<br />
+## [README of Korean(한국어)][README_ko.md]<br />
 
 [![License][licensesvg]][LICENSE.md] <br />
 This is a simple board game using memory. <br />
