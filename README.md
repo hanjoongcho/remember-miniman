@@ -40,7 +40,7 @@ Step4. Create an account for ranking. (Firebase Database)
        Password must be at least 6 characters long.
 ```
 <img src="screenshots/ranking_1_en.png" width="288" height="512">&nbsp;
-<img src="screenshots/ranking_2.gif" width="288" height="512">&nbsp;
+<img src="screenshots/ranking_2.png" width="288" height="512">&nbsp;
 
 # How to build
 ```

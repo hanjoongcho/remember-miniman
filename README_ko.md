@@ -40,7 +40,7 @@ Step4. 랭킹등록을 위한 계정을 생성한다. (Firebase Database)
        비밀번호는 6자이상 이어야 한다.
 ```
 <img src="screenshots/ranking_1_ko.png" width="288" height="512">&nbsp;
-<img src="screenshots/ranking_2.gif" width="288" height="512">&nbsp;
+<img src="screenshots/ranking_2.png" width="288" height="512">&nbsp;
 
 # 빌드방법
 ```
