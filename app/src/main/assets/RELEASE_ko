@@ -5,7 +5,7 @@
 ---------------------------------------------------
 
 # Changes in 0.3.0 (date: 2017/11/13)
-  Added ranking registration feature
+  * 랭킹등록기능 추가
 
 # Changes in 0.1.0 (date: 2017/08/06)
-  Initial release
+  * 최초배포
