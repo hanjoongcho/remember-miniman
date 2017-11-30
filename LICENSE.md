@@ -19,7 +19,10 @@ limitations under the License.
 ```
 
 ### miniman images
-https://www.flaticon.com/packs/miniman
+https://www.flaticon.com/packs/miniman   
+Published by Roundicons  1 year ago   
+License: Flaticon Basic License   
+Download format: Vector icon (SVG & EPS), PNG and PSD   
 ```
 Flaticon Basic License
 LICENSE TERMS AND CONDITIONS
